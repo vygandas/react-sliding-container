@@ -15,7 +15,11 @@
     "clean-lib": "rm -f -r -d lib",
     "prepare": "npm run build",
     "test": "jest --coverage --config=configs/jest.json",
-    "test:watch": "jest --watch --coverage --config=configs/jest.json"
+    "test:watch": "jest --watch --coverage --config=configs/jest.json",
+    "lint": "npm run lint:ts && npm run lint:sass",
+    "lint:fix": "tslint './src/**/*.ts*' --format stylish --force --fix && stylelint ./assets/**/*.scss --fix",
+    "lint:ts": "tslint './src/**/*.ts*' --format stylish --force",
+    "lint:sass": "stylelint ./assets/**/*.scss"
   },
   "author": "Vygandas Pliasas",
   "license": "MIT",
