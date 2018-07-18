@@ -10,3 +10,5 @@
 [![devDependency Status](https://david-dm.org/vygandas/react-sliding-container/dev-status.svg?theme=shields.io)](https://david-dm.org/vygandas/react-sliding-container#info=devDependencies)
 [![Coverage Status](https://coveralls.io/repos/github/vygandas/react-sliding-container/badge.svg?branch=master)](https://coveralls.io/github/vygandas/react-sliding-container?branch=master)
 [![Inline docs](http://inch-ci.org/github/vygandas/react-sliding-container.svg?branch=master)](http://inch-ci.org/github/vygandas/react-sliding-container)
+[![npm](https://img.shields.io/npm/v/react-sliding-container.svg?maxAge=2592000)](https://www.npmjs.com/package/react-sliding-container)
+[![downloads](https://img.shields.io/npm/dt/react-sliding-container.svg?maxAge=2592000)](https://www.npmjs.com/package/react-sliding-container)
