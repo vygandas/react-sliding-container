@@ -11,7 +11,7 @@ interface ICircularThreeElements<T = any> {
  * @param list array of objects
  * @param position current position
  */
-export const getNext = (list: Array<any>, position: number) => {
+export const getNext = (list: any[], position: number) => {
     if (list.length > 2 && position === list.length - 1) {
         return list[0];
     } else if (list.length > 2) {
@@ -27,7 +27,7 @@ export const getNext = (list: Array<any>, position: number) => {
  * @param list array of objects
  * @param position current position
  */
-export const getPrevious = (list: Array<any>, position: number) => {
+export const getPrevious = (list: any[], position: number) => {
     if (list.length > 2 && position === 0) {
         return list[list.length - 1];
     } else if (list.length > 2) {
@@ -47,7 +47,7 @@ export const getPrevious = (list: Array<any>, position: number) => {
  * @param list array of objects
  * @param position position of current element that we need to calculate other
  */
-export const circular = (list: Array<any>, position: number = 0): ICircularThreeElements => {
+export const circular = (list: any[], position: number = 0): ICircularThreeElements => {
   const elements: ICircularThreeElements = {
       current: null,
       previous: getPrevious(list, position),
