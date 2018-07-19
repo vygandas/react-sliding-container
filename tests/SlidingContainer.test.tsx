@@ -1,5 +1,5 @@
 import * as React from "react";
-import SlidingContainer from "../src/SlidingContainer";
+import SlidingContainer from "../src/index";
 import "./__mocks__/setupTests";
 import { shallow } from "enzyme";
 

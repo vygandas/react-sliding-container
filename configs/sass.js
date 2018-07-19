@@ -1,10 +1,10 @@
 const sass = require('node-sass');
 const fs = require('fs');
 
-const outputFile = 'lib/SlidingContainer.css';
+const outputFile = 'lib/main.css';
 
 sass.render({
-  file: 'assets/initial.scss',
+  file: 'assets/sass/main.scss',
   outFile: outputFile,
   outputStyle: 'compressed'
 }, function(error, result) {

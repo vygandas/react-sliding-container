@@ -35,7 +35,7 @@ import * as React from "react";
 // This is the main component that you need.
 import SlidingContainer from "react-sliding-container";
 // Component comes without CSS styles, so if you want to have default ones you must include this
-import "../node_modules/react-sliding-container/lib/SlidingContainer.css";
+import "../node_modules/react-sliding-container/lib/main.css";
 
 import "assets/scss/App.scss";
 
@@ -55,7 +55,18 @@ export default class App extends React.Component<undefined, undefined> {
 }
 ````
 
-## react-sliding-container NPM package
+## About this component core
+
+It can be used as a base component for other ideas. There're implemented:
+
+- Typescript, React, SCSS
+- TS, SASS Linting
+- Tests, Jest, Mocha, Enzyme
+- Configurations for systems:
+  - Travis
+  - Appveyor
+  - CircleCI
+- Coveralls integrations for displaying how much of code is tested (You have to add your own token to .coveralls.yml or if using a CI add environment variable COVERALLS_REPO_TOKEN for submitting results)
 
 
 
