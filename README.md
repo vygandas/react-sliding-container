@@ -91,5 +91,8 @@ It can be used as a base component for other ideas. There're implemented:
   - CircleCI
 - Coveralls integrations for displaying how much of code is tested (You have to add your own token to .coveralls.yml or if using a CI add environment variable COVERALLS_REPO_TOKEN for submitting results)
 
+## React TypeScript NPM package Boilerplate Starter project
 
+I've branched a part where everything is ready for creating a new NPM package.
+https://github.com/vygandas/react-sliding-container/tree/npm-package-component-skeleton-boilerplate
 
