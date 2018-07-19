@@ -1,4 +1,12 @@
-# React slider with your content
+# React Slider with your custom components in each slide
+
+DEMO live: https://agitated-banach-4668c2.netlify.com
+
+DEMO repo: https://github.com/vygandas/react-sliding-container-demo
+
+## Installation
+
+`npm i --save react-sliding-container`
 
 ## react-sliding-container NPM package
 
