@@ -16,11 +16,11 @@
     "prepare": "npm run build",
     "test": "jest --coverage --config=configs/jest.json",
     "test:watch": "jest --watch --coverage --config=configs/jest.json",
-    "lint": "npm run lint:ts && npm run lint:sass",
-    "lint:fix": "tslint './src/**/*.ts*' --format stylish --force --fix && stylelint ./assets/**/*.scss --fix",
+    "linter": "npm run lint:ts && npm run lint:sass",
+    "linter:fix": "tslint -c ./tslint.json './src/**/*.ts*' --format stylish --force --fix && stylelint ./assets/**/*.scss --fix",
     "lint:ts": "tslint './src/**/*.ts*' --format stylish --force",
     "lint:sass": "stylelint ./assets/**/*.scss",
-    "precommit": "npm run lint && lint-staged && npm run test",
+    "precommit": "npm run linter:fix  && npm run test",
     "prepublish": "npm-auto-version",
     "postpublish": "git push origin --tags"
   },
@@ -57,6 +57,9 @@
     "@types/jest": "^23.3.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^5.1.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-typescript": "^0.12.0",
     "expect": "^23.2.0",
     "husky": "^0.14.3",
     "jest": "^23.4.1",
@@ -65,7 +68,10 @@
     "npm-auto-version": "^1.0.0",
     "stylelint": "^9.2.1",
     "stylelint-config-standard": "^18.2.0",
-    "tslint": "^5.10.0"
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-eslint-rules": "^5.3.1",
+    "tslint-react": "^3.6.0"
   },
   "files": [
     "lib",
