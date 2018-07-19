@@ -21,6 +21,12 @@
     "lint:ts": "tslint './src/**/*.ts*' --format stylish --force",
     "lint:sass": "stylelint ./assets/**/*.scss"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm lint",
+      "pre-push": "npm lint && npm test"
+    }
+  },
   "author": "Vygandas Pliasas",
   "license": "MIT",
   "repository": {
@@ -37,6 +43,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "expect": "^23.2.0",
     "hoek": "^5.0.3",
+    "husky": "^1.0.0-rc.13",
     "jest": "^23.4.1",
     "jest-enzyme": "^6.0.2",
     "node-sass": "^4.9.0",
