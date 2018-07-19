@@ -20,7 +20,8 @@
     "lint:fix": "tslint './src/**/*.ts*' --format stylish --force --fix && stylelint ./assets/**/*.scss --fix",
     "lint:ts": "tslint './src/**/*.ts*' --format stylish --force",
     "lint:sass": "stylelint ./assets/**/*.scss",
-    "doc": "inchjs"
+    "prepush": "npm test",
+    "precommit": "npm test"
   },
   "husky": {
     "hooks": {
