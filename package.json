@@ -1,6 +1,6 @@
 {
   "name": "react-sliding-container",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React slider with your content",
   "keywords": [
     "react",
@@ -21,8 +21,8 @@
     "lint:ts": "tslint './src/**/*.ts*' --format stylish --force",
     "lint:sass": "stylelint ./assets/**/*.scss",
     "precommit": "npm run lint && lint-staged && npm run test",
-    "prepush": "npm run lint && npm run test",
-    "prepublishOnly": "semantic-release"
+    "prepublish": "npm-auto-version",
+    "postpublish": "git push origin --tags"
   },
   "lint-staged": {
     "src/*.ts": [
@@ -62,7 +62,7 @@
     "jest": "^23.4.1",
     "jest-enzyme": "^6.0.2",
     "lint-staged": "^7.2.0",
-    "semantic-release": "^15.8.1",
+    "npm-auto-version": "^1.0.0",
     "stylelint": "^9.2.1",
     "stylelint-config-standard": "^18.2.0",
     "tslint": "^5.10.0"
