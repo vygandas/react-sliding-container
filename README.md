@@ -1,14 +1,4 @@
-# React Slider with your custom components in each slide
-
-DEMO live: https://agitated-banach-4668c2.netlify.com
-
-DEMO repo: https://github.com/vygandas/react-sliding-container-demo
-
-## Installation
-
-`npm i --save react-sliding-container`
-
-## react-sliding-container NPM package
+# React Slider with your custom components in each slide (react-sliding-container)
 
 [![CircleCI](https://circleci.com/gh/vygandas/react-sliding-container/tree/master.svg?style=svg)](https://circleci.com/gh/vygandas/react-sliding-container/tree/master)
 [![Build Status](https://travis-ci.org/vygandas/react-sliding-container.svg?branch=master)](https://travis-ci.org/vygandas/react-sliding-container)
@@ -20,4 +10,52 @@ DEMO repo: https://github.com/vygandas/react-sliding-container-demo
 [![npm](https://img.shields.io/npm/v/react-sliding-container.svg?maxAge=3600)](https://www.npmjs.com/package/react-sliding-container)
 [![downloads](https://img.shields.io/npm/dt/react-sliding-container.svg?maxAge=3600)](https://www.npmjs.com/package/react-sliding-container)
 [![Twitter](https://img.shields.io/twitter/url/https/www.npmjs.com/package/react-sliding-container.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Freact-sliding-container)
+
+DEMO live: https://agitated-banach-4668c2.netlify.com
+
+DEMO repo: https://github.com/vygandas/react-sliding-container-demo
+
+NPM pack: https://www.npmjs.com/package/react-sliding-container
+
+## Installation
+
+`npm i --save react-sliding-container`
+
+### How to include
+
+Main component `import SlidingContainer from "react-sliding-container";`
+
+Default styles `import "../node_modules/react-sliding-container/lib/SlidingContainer.css";`
+
+## Simple usage
+
+````javascript
+import * as React from "react";
+
+// This is the main component that you need.
+import SlidingContainer from "react-sliding-container";
+// Component comes without CSS styles, so if you want to have default ones you must include this
+import "../node_modules/react-sliding-container/lib/SlidingContainer.css";
+
+import "assets/scss/App.scss";
+
+export default class App extends React.Component<undefined, undefined> {
+    render(): JSX.Element {
+        return (
+            <div className="container app-component">
+                <div className="row">
+                    <div className="col-12 text-center py-5">
+                        <h1 className="display-5 mb-5">React Sliding Container Demo App</h1>
+                        <SlidingContainer/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+````
+
+## react-sliding-container NPM package
+
+
 
