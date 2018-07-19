@@ -1,7 +1,9 @@
 import * as React from "react";
+import Slide from "./components/Slide";
 
-interface ISlidingContainerProps {
+export interface ISlidingContainerProps {
   options?: {};
+  children?: React.ReactElement<Slide>[] | React.ReactElement<Slide>;
 }
 
 /**
@@ -11,7 +13,9 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
   constructor(props: ISlidingContainerProps) {
     super(props);
   }
-  public render() {
-    return <div className="react-sliding-container">Sliding container</div>;
+  public render(): JSX.Element {
+    return (
+      <div className="react-sliding-container">Sliding container!!!</div>
+    );
   }
 }

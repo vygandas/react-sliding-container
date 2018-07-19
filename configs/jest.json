@@ -1,6 +1,9 @@
 {
   "rootDir": "..",
   "coverageDirectory": "<rootDir>/tests/__coverage__/",
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/src/interfaces/*"
+  ],
   "setupFiles": [
     "<rootDir>/tests/__mocks__/shim.js"
   ],
