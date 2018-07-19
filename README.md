@@ -27,6 +27,29 @@ Main component `import SlidingContainer from "react-sliding-container";`
 
 Default styles `import "../node_modules/react-sliding-container/lib/SlidingContainer.css";`
 
+## Components
+
+Component | Description
+--- | ---
+SlidingContainer | Main slider wrapper. It holds slide elements.
+Slide | Slide element that contains content. Slide content types (wrapped inside) `React.ReactElement<any> | HTMLElement`
+
+## Options
+
+### SlidingContainer
+
+Option | Description
+--- | ---
+className | `string` additional class that's added to the main SlidingContainer wrapper
+stopPropagation | `boolean = true` prefents drag/touch events from bubbling up 
+
+### Slide
+
+Option | Description
+--- | ---
+className | `string` additional class that's added to the main Slide wrapper
+
+
 ## Simple usage
 
 ````javascript

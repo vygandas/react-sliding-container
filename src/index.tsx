@@ -3,7 +3,7 @@ import Slide from "./components/Slide";
 
 export interface ISlidingContainerProps {
   options?: {};
-  children?: React.ReactElement<Slide>[] | React.ReactElement<Slide>;
+  children?: Array<React.ReactElement<Slide>> | React.ReactElement<Slide>;
 }
 
 /**
