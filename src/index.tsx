@@ -2,7 +2,10 @@ import * as React from "react";
 import Slide from "./components/Slide";
 
 export interface ISlidingContainerProps {
-  options?: {};
+  options?: {
+    className?: string;
+    stopPropagation?: boolean;
+  };
   children?: Array<React.ReactElement<Slide>> | React.ReactElement<Slide>;
 }
 
@@ -15,7 +18,11 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
   }
   public render(): JSX.Element {
     return (
-      <div className="react-sliding-container">Sliding container!!!</div>
+      <div className={`react-sliding-container ${this.props.options && this.props.options.className}`}>
+        <div className="react-sliding-container-inner">
+          {this.props.children}
+        </div>
+      </div>
     );
   }
 }

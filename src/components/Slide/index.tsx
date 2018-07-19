@@ -14,7 +14,11 @@ export default class Slide extends React.Component<ISlideProps, {}> {
   public render(): JSX.Element {
     return (
       <div className="react-sliding-container-slide">
-        {this.props.children}
+        <div className="react-sliding-container-slide-inner">
+          <div className="react-sliding-container-slide-content">
+            {this.props.children}
+          </div>
+        </div>
       </div>
     );
   }
