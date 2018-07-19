@@ -73,7 +73,6 @@ before_install:
   - npm --version
   - gcc --version
   - g++ --version
-  - npm install lint
 
 install:
   - npm install
