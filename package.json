@@ -1,6 +1,6 @@
 {
   "name": "react-sliding-container",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "React slider with your content",
   "keywords": [
     "react",
@@ -9,7 +9,7 @@
     "container",
     "custom slides"
   ],
-  "main": "SlidingContainer.js",
+  "main": "lib/SlidingContainer.js",
   "scripts": {
     "build": "npm run clean-lib && tsc && node configs/sass.js",
     "clean-lib": "rm -f -r -d lib",
