@@ -2,7 +2,11 @@
 @import "mixins";
 
 .react-sliding-container {
+  display: block;
   box-sizing: content-box;
   background-color: $background_main_color;
-  @include box-shadow(0, 0, 30px, rgba(0, 0, 0, 0.4));
+  position: relative;
 }
+
+@import "./components/arrow";
+@import "./components/slide";

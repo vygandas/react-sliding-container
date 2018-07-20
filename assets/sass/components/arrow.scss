@@ -1,0 +1,23 @@
+.react-sliding-container-arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: table;
+    height: 100%;
+    &.arrow-left {
+        left: 0;
+    }
+    &.arrow-right {
+        right: 0;
+    }
+    .react-sliding-container-arrow-inner {
+        display: table-row;
+        .react-sliding-container-arrow-content {
+            display: table-cell;
+            vertical-align: middle;
+            span {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 {
   "name": "react-sliding-container",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "React slider with your content",
   "keywords": [
     "react",
@@ -12,6 +12,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "npm run clean-lib && tsc && node configs/sass.js",
+    "dev": "watch 'npm run build' src assets",
     "clean-lib": "rm -f -r -d lib",
     "prepare": "npm run build",
     "test": "jest --coverage --coverageReporters=text-lcov --config=configs/jest.json | coveralls",
