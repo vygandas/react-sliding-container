@@ -1,8 +1,9 @@
 import * as React from "react";
 
 export interface IArrowProps {
-  symbol: React.ReactElement<any> | HTMLElement | string | null;
-  type: string;
+  symbol?: React.ReactElement<any> | HTMLElement | string | null;
+  type?: string;
+  clickHandlerCallback?: () => void
 }
 
 /**
@@ -16,7 +17,10 @@ export default class Arrow extends React.Component<IArrowProps, {}> {
     return (
       <div className={`react-sliding-container-arrow ${this.props.type}`}>
         <div className="react-sliding-container-arrow-inner">
-          <div className="react-sliding-container-arrow-content">
+          <div
+            className="react-sliding-container-arrow-content"
+            onClick={this.props.clickHandlerCallback}
+          >
             <span>
               {this.props.symbol}
             </span>

@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import Arrow from "./components/Arrow";
 import { ARROW_LEFT, ARROW_RIGHT } from "./components/Arrow/types";
 import Slide from "./components/Slide";
+import { circular } from "./helpers/circular";
 import { IMeasurements, measurements } from "./helpers/measurements";
 
 export * from "./components/Slide";
@@ -28,10 +29,10 @@ const defaultOptions: ISlidingContainerProps['options'] = {
   width: '100%',
   height: '250px',
   stopPropagation: true,
-  leftArrow: <Arrow symbol='◄' type={ARROW_LEFT}/>,
-  rightArrow: <Arrow symbol='►' type={ARROW_RIGHT}/>,
+  leftArrow: <Arrow symbol='◄' />,
+  rightArrow: <Arrow symbol='►' />,
   bullet: '○',
-  slideXMarginPx: 50,
+  slideXMarginPx: 20,
   showArrows: true
 };
 
@@ -42,11 +43,15 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
   private options: ISlidingContainerProps['options'] = null;
   private calculatedMeasurements: IMeasurements = null;
   private containerStyle = {};
+  private slides: React.ReactChild[] = [];
+  private activeSlideIndex: number = 0;
   constructor(props: ISlidingContainerProps) {
     super(props);
+    this.updateCurrentSlideIndex = this.updateCurrentSlideIndex.bind(this);
   }
   public componentWillMount(): void {
     this.options = {...defaultOptions, ...this.props.options};
+    this.slides = React.Children.toArray(this.props.children);
   }
   public componentDidMount(): void {
     this.calculatedMeasurements = measurements(document, this.options.slideXMarginPx);
@@ -57,8 +62,7 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
     this.forceUpdate();
   }
   public render(): JSX.Element {
-    // console.log("SlidingContainer render() this.props.children", this.props.children);
-    console.log("SlidingContainer render() containerStyle", this.containerStyle);
+    const circulated = circular(this.slides, this.activeSlideIndex);
     return (
       <div
         id="react-sliding-container"
@@ -66,19 +70,47 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
         style={{ width: this.options.width, height: this.options.height }}
       >
         <div id="rscawl">
-          {this.isShowArrows() && this.options.leftArrow}
+          {this.isShowArrows() && React.cloneElement(this.options.leftArrow, {
+            clickHandlerCallback: () => { this.updateCurrentSlideIndex(circulated.previousIndex) },
+            type: ARROW_LEFT
+          })}
         </div>
         <div className="react-sliding-container-inner" style={this.containerStyle}>
-          {this.props.children}
+          {circulated.calculatedChildren.map((child, i) => React.cloneElement(
+            child,
+            {
+              id: `slide-${i}`,
+              style: {...child.props.style, ...{
+                left: `${this.calculateLeft(i)}px`,
+                width: `${this.calculatedMeasurements ? this.calculatedMeasurements.slide.width : 0}px`
+              }}
+            }
+          ))}
         </div>
         <div id="rscawr">
-          {this.isShowArrows() && this.options.showArrows && this.options.rightArrow}
+          {this.isShowArrows() && this.options.showArrows && React.cloneElement(this.options.rightArrow, {
+            clickHandlerCallback: () => { this.updateCurrentSlideIndex(circulated.nextIndex) },
+            type: ARROW_RIGHT
+          })}
         </div>
       </div>
     );
   }
+  private updateCurrentSlideIndex(index: number): void {
+    console.log("SlidingContainer updateCurrentSlideIndex executed");
+    this.activeSlideIndex = index;
+    this.forceUpdate();
+  }
+  private calculateLeft(slideIndex: number): number {
+    if (this.calculatedMeasurements === null) { return 0; }
+    switch (slideIndex) {
+      case 0: return -(this.calculatedMeasurements.slide.width + this.options.slideXMarginPx * 2);
+      case 1: return 0;
+      case 2: return this.calculatedMeasurements.slide.width + this.options.slideXMarginPx * 2;
+      default: throw new Error(`Method calculateLeft of component SlidingContainer received unexpected index [${slideIndex}].`);
+    }
+  }
   private isShowArrows(): boolean {
-    const children = React.Children.toArray(this.props.children);
-    return this.options.showArrows && this.props.children && children.length > 1;
+    return this.options.showArrows && this.slides.length > 1;
   }
 }

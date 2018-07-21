@@ -78,6 +78,29 @@ export default class App extends React.Component<undefined, undefined> {
 }
 ````
 
+## Custom left / right Arrows
+
+To use your own arrows you must extend Arrow class and override methods according to your needs.
+This is needed because it holds callback functions attached from main component.
+
+````javascript
+import Arrow from "react-sliding-container";
+//<...>
+const MyCustomArrow = class MyArrow extends Arrow {
+    render() {
+        return (
+            <div>Left</div>
+        );
+    }
+}
+//<...>
+<SlidingContainer
+    options={{
+        leftArrow: <MyCustomArrow />
+    }}
+/>
+````
+
 ## About this component core
 
 It can be used as a base component for other ideas. There're implemented:

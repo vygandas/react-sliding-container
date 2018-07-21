@@ -6,6 +6,7 @@
   box-sizing: content-box;
   background-color: $background_main_color;
   position: relative;
+  overflow: hidden;
 
   .react-sliding-container-inner {
     position: absolute;
