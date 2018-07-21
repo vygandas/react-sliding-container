@@ -1,9 +1,9 @@
 import * as React from "react";
-import Slide from "./components/Slide";
+import * as ReactDOM from "react-dom";
 import Arrow from "./components/Arrow";
 import { ARROW_LEFT, ARROW_RIGHT } from "./components/Arrow/types";
-import { measurements, IMeasurements } from "./helpers/measurements";
-import * as ReactDOM from "react-dom";
+import Slide from "./components/Slide";
+import { IMeasurements, measurements } from "./helpers/measurements";
 
 export * from "./components/Slide";
 export * from "./components/Arrow";
@@ -45,10 +45,10 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
   constructor(props: ISlidingContainerProps) {
     super(props);
   }
-  componentWillMount(): void {
+  public componentWillMount(): void {
     this.options = {...defaultOptions, ...this.props.options};
   }
-  componentDidMount(): void {
+  public componentDidMount(): void {
     this.calculatedMeasurements = measurements(document, this.options.slideXMarginPx);
     this.containerStyle = this.calculatedMeasurements ? {
       left: this.calculatedMeasurements.slide.left,
