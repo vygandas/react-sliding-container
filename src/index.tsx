@@ -20,7 +20,7 @@ export interface ISlidingContainerProps {
     slideXMarginPx?: number;
     showArrows?: boolean;
   };
-  children?: Array<React.ReactElement<Slide>>;
+  children?: Array<React.ReactElement<Slide>> | React.ReactElement<Slide>;
 }
 
 const defaultOptions: ISlidingContainerProps['options'] = {
@@ -66,15 +66,19 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
         style={{ width: this.options.width, height: this.options.height }}
       >
         <div id="rscawl">
-          {this.props.children && this.props.children.length > 1 && this.options.showArrows && this.options.leftArrow}
+          {this.isShowArrows() && this.options.leftArrow}
         </div>
         <div className="react-sliding-container-inner" style={this.containerStyle}>
           {this.props.children}
         </div>
         <div id="rscawr">
-          {this.props.children && this.props.children.length > 1 && this.options.showArrows && this.options.rightArrow}
+          {this.isShowArrows() && this.options.showArrows && this.options.rightArrow}
         </div>
       </div>
     );
+  }
+  private isShowArrows(): boolean {
+    const children = React.Children.toArray(this.props.children);
+    return this.options.showArrows && this.props.children && children.length > 1;
   }
 }

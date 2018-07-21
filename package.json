@@ -21,7 +21,7 @@
     "lint:fix": "tslint -c ./tslint.json './src/**/*.ts*' --format stylish --force --fix && stylelint ./assets/**/*.scss --fix",
     "lint:ts": "tslint './src/**/*.ts*' --format stylish --force",
     "lint:sass": "stylelint ./assets/**/*.scss",
-    "precommit": "npm run lint:fix && npm run test",
+    "precommit": "npm run lint:fix && git add . && npm run test",
     "prepublish": "npm-auto-version",
     "postpublish": "git push origin --tags"
   },
