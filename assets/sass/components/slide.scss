@@ -1,5 +1,18 @@
 @import "../mixins";
 
 .react-sliding-container-slide {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     @include box-shadow(0, 0, 30px, rgba(0, 0, 0, 0.4));
+}
+
+.react-sliding-container-slide,
+.react-sliding-container-slide-inner,
+.react-sliding-container-slide-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }

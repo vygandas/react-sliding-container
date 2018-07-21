@@ -1,11 +1,16 @@
 @import "variables";
 @import "mixins";
 
-.react-sliding-container {
+#react-sliding-container {
   display: block;
   box-sizing: content-box;
   background-color: $background_main_color;
   position: relative;
+  .react-sliding-container-inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
 }
 
 @import "./components/arrow";
