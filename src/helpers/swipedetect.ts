@@ -26,7 +26,7 @@ export const swipedetect = (el: HTMLElement, callback: (swipedir: string) => {}|
         startX = touchobj.pageX
         startY = touchobj.pageY
         startTime = new Date().getTime() // record time when finger first makes contact with surface
-        e.preventDefault()
+        // e.preventDefault()
     };
     const touchMoveHandler = (e: any) => {
         e.preventDefault() // prevent scrolling when inside DIV
@@ -45,7 +45,7 @@ export const swipedetect = (el: HTMLElement, callback: (swipedir: string) => {}|
             }
         }
         handleswipe(swipedir);
-        e.preventDefault();
+        // e.preventDefault();
     };
 
     touchsurface.addEventListener('touchstart', touchStartHandler, false);
