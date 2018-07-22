@@ -7,7 +7,7 @@ import "./__mocks__/setupTests";
 describe("<Slide/>", () => {
 
     it("should render without throwing an error and have a class 'react-sliding-container-slide'", () => {
-        expect(shallow(<Slide/>).find(".react-sliding-container-slide").exists()).toBe(true);
+        expect(shallow(<Slide id={'1'}/>).find(".react-sliding-container-slide").exists()).toBe(true);
     });
 
     it("should render with html element", () => {

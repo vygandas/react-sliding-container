@@ -57,8 +57,16 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
     this.updateCurrentSlideIndex = this.updateCurrentSlideIndex.bind(this);
   }
   public componentWillMount(): void {
-    this.options = {...defaultOptions, ...this.props.options};
-    this.slides = React.Children.toArray(this.props.children);
+    this.options = {...defaultOptions, ...(
+      this && typeof this.props !== typeof undefined
+      && typeof this.props.options !== typeof undefined
+        ? this.props.options
+        : {}
+    )};
+    this.slides = this && typeof this.props !== typeof undefined
+      && typeof this.props.children !== typeof undefined && this.props.children
+        ? React.Children.toArray(this.props.children)
+        : [];
   }
   public componentDidMount(): void {
     this.calculatedMeasurements = measurements(document, this.options.slideXMarginPx);
@@ -84,7 +92,11 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
           })}
         </div>
         <div id="innerContainer" className="react-sliding-container-inner" style={this.containerStyle}>
-          {circulated.calculatedChildren.map((child, i) => React.cloneElement(
+          {circulated.calculatedChildren
+            && circulated.calculatedChildren.length > 0
+            && circulated.calculatedChildren[0] !== null
+            && circulated.calculatedChildren[1] !== undefined
+            && circulated.calculatedChildren.map((child, i) => React.cloneElement(
             child,
             {
               id: `slide-${i}`,

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { guid } from "../../helpers/guid";
 
 export interface ISlideProps {
   children?: React.ReactElement<any> | HTMLElement;
@@ -7,13 +8,23 @@ export interface ISlideProps {
   id?: string;
 }
 
+const defaultOptions: ISlideProps = {
+  backgroundImage: null,
+  id: guid(),
+  style: {}
+};
+
 /**
  * Slide component where you can place your own
  */
 export default class Slide extends React.Component<ISlideProps, {}> {
+  private options: ISlideProps = null;
   constructor(props: ISlideProps) {
     super(props);
   }
+  // public componentWillMount(): void {
+  //   this.options = {...defaultOptions, ...this.props};
+  // }
   public render(): JSX.Element {
     return (
       <div
