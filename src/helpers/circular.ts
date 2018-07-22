@@ -77,18 +77,19 @@ export const circular = (list: any[], position: number = 0): ICircularThreeEleme
   const current = list[position];
   const next = getNext(list, position);
   const elements: ICircularThreeElements = {
-      current,
-      previous,
-      next,
-      length: list.length,
-      position,
       calculatedChildren: [
         previous,
         current,
         next
       ],
-      previousIndex: getPreviousIndex(list, position),
-      nextIndex: getNextIndex(list, position)
+      current,
+      length: list.length,
+      next,
+      nextIndex: getNextIndex(list, position),
+      position,
+      previous,
+      previousIndex: getPreviousIndex(list, position)
+      
   };
   return elements;  
 }

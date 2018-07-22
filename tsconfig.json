@@ -5,9 +5,10 @@
 		"module": "commonjs",
 		"noImplicitAny": true,
 		"removeComments": true,
-    "declaration": true,
+        "declaration": true,
 		"sourceMap": true,
-		"jsx": "react"
+		"jsx": "react",
+		"lib": [ "es2015", "es6", "dom" ]
 	},
 	"include": [
 		"./src/**/*.tsx",

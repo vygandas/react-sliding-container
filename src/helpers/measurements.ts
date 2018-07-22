@@ -28,9 +28,6 @@ export const measurements = (doc: Document, margin: number): IMeasurements => {
     const leftArrowWidth = leftArrow ? leftArrow.clientWidth : null;
     const rightArrowWidth = rightArrow ? rightArrow.clientWidth : null;
     return {
-        wrapper: {
-            width: wrapperWidth,
-        },
         arrows: {
             left: {
                 width: leftArrowWidth,
@@ -40,9 +37,12 @@ export const measurements = (doc: Document, margin: number): IMeasurements => {
             }
         },
         slide: {
-            width: wrapperWidth - leftArrowWidth - rightArrowWidth - (margin * 2),
             left: leftArrowWidth + margin,
             right: rightArrowWidth + margin,
+            width: wrapperWidth - leftArrowWidth - rightArrowWidth - (margin * 2),
         },
+        wrapper: {
+            width: wrapperWidth,
+        }
     };
 }

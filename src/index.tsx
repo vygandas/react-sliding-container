@@ -4,10 +4,13 @@ import Arrow from "./components/Arrow";
 import { ARROW_LEFT, ARROW_RIGHT } from "./components/Arrow/types";
 import Slide from "./components/Slide";
 import { circular } from "./helpers/circular";
+import { easeInQuad, IEasings } from "./helpers/easings";
 import { IMeasurements, measurements } from "./helpers/measurements";
+import {scrollTo} from "./helpers/scrollTo";
 
 export * from "./components/Slide";
 export * from "./components/Arrow";
+export * from "./helpers/easings";
 
 export interface ISlidingContainerProps {
   options?: {
@@ -20,20 +23,24 @@ export interface ISlidingContainerProps {
     bullet?: string;
     slideXMarginPx?: number;
     showArrows?: boolean;
+    slideTime?: number;
+    slidingType?: keyof IEasings 
   };
   children?: Array<React.ReactElement<Slide>> | React.ReactElement<Slide>;
 }
 
 const defaultOptions: ISlidingContainerProps['options'] = {
+  bullet: '○',
   className: null,
-  width: '100%',
   height: '250px',
-  stopPropagation: true,
   leftArrow: <Arrow symbol='◄' />,
   rightArrow: <Arrow symbol='►' />,
-  bullet: '○',
+  showArrows: true,
+  slideTime: 1000,
   slideXMarginPx: 20,
-  showArrows: true
+  slidingType: easeInQuad,
+  stopPropagation: true,
+  width: '100%',
 };
 
 /**
@@ -57,7 +64,8 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
     this.calculatedMeasurements = measurements(document, this.options.slideXMarginPx);
     this.containerStyle = this.calculatedMeasurements ? {
       left: this.calculatedMeasurements.slide.left,
-      right: this.calculatedMeasurements.slide.right,
+      marginLeft: 0,
+      right: this.calculatedMeasurements.slide.right
     } : {};
     this.forceUpdate();
   }
@@ -71,11 +79,11 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
       >
         <div id="rscawl">
           {this.isShowArrows() && React.cloneElement(this.options.leftArrow, {
-            clickHandlerCallback: () => { this.updateCurrentSlideIndex(circulated.previousIndex) },
+            clickHandlerCallback: () => { this.updateCurrentSlideIndex(circulated.previousIndex, "left") },
             type: ARROW_LEFT
           })}
         </div>
-        <div className="react-sliding-container-inner" style={this.containerStyle}>
+        <div id="innerContainer" className="react-sliding-container-inner" style={this.containerStyle}>
           {circulated.calculatedChildren.map((child, i) => React.cloneElement(
             child,
             {
@@ -89,17 +97,20 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
         </div>
         <div id="rscawr">
           {this.isShowArrows() && this.options.showArrows && React.cloneElement(this.options.rightArrow, {
-            clickHandlerCallback: () => { this.updateCurrentSlideIndex(circulated.nextIndex) },
+            clickHandlerCallback: () => { this.updateCurrentSlideIndex(circulated.nextIndex, "right") },
             type: ARROW_RIGHT
           })}
         </div>
       </div>
     );
   }
-  private updateCurrentSlideIndex(index: number): void {
-    console.log("SlidingContainer updateCurrentSlideIndex executed");
+  private updateCurrentSlideIndex(index: number, direction: "left"|"right") {
+    const moveBy = (this.calculatedMeasurements.slide.width + this.options.slideXMarginPx * 2) * (direction === "left" ? 1 : -1);
     this.activeSlideIndex = index;
-    this.forceUpdate();
+    scrollTo(document.getElementById("innerContainer"), moveBy, () => {
+      this.forceUpdate();
+      document.getElementById("innerContainer").style.marginLeft = null;
+    }, this.options.slideTime, "horizontal").then();
   }
   private calculateLeft(slideIndex: number): number {
     if (this.calculatedMeasurements === null) { return 0; }
