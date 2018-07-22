@@ -56,7 +56,7 @@ Option | Description
 --- | ---
 `className?: string` | Additional class that's added to the main Slide wrapper. Default `null`.
 `backgroundImage?: string` | Image for a whole slide background. Default `null`.
-`style?: {[key: string]: string | number}` | Style attributes object for a slide. It is mostly used by slider system and you shouldn't touch this. Default `{}`.
+`style?: {[key: string]: string or number}` | Style attributes object for a slide. It is mostly used by slider system and you shouldn't touch this. Default `{}`.
 
 ## Simple usage
 
