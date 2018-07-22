@@ -1,6 +1,6 @@
 import * as React from "react";
-import "../__mocks__/setupTests";
 import {circular, getNext, getPrevious} from "../../src/helpers/circular";
+import "../__mocks__/setupTests";
 
 describe("Circular helper function", () => {
 

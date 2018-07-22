@@ -3,10 +3,11 @@ import * as ReactDOM from "react-dom";
 import Arrow from "./components/Arrow";
 import { ARROW_LEFT, ARROW_RIGHT } from "./components/Arrow/types";
 import Slide from "./components/Slide";
-import { circular } from "./helpers/circular";
+import { circular, ICircularThreeElements } from "./helpers/circular";
 import { easeInQuad, IEasings } from "./helpers/easings";
 import { IMeasurements, measurements } from "./helpers/measurements";
 import {scrollTo} from "./helpers/scrollTo";
+import { swipedetect } from "./helpers/swipedetect";
 
 export * from "./components/Slide";
 export * from "./components/Arrow";
@@ -36,7 +37,7 @@ const defaultOptions: ISlidingContainerProps['options'] = {
   leftArrow: <Arrow symbol='◄' />,
   rightArrow: <Arrow symbol='►' />,
   showArrows: true,
-  slideTime: 1000,
+  slideTime: 500,
   slideXMarginPx: 20,
   slidingType: easeInQuad,
   stopPropagation: true,
@@ -52,6 +53,7 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
   private containerStyle = {};
   private slides: React.ReactChild[] = [];
   private activeSlideIndex: number = 0;
+  private circulated: ICircularThreeElements<any> = null;
   constructor(props: ISlidingContainerProps) {
     super(props);
     this.updateCurrentSlideIndex = this.updateCurrentSlideIndex.bind(this);
@@ -76,9 +78,21 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
       right: this.calculatedMeasurements.slide.right
     } : {};
     this.forceUpdate();
+
+    const innerContainer = document.getElementById("innerContainer");
+    if (innerContainer !== null) {
+      swipedetect(document.getElementById("innerContainer"), (swipedir: string) => {
+        if (swipedir === 'left') {
+          this.updateCurrentSlideIndex(this.circulated.nextIndex, "right")
+        }
+        if (swipedir === 'right') {
+          this.updateCurrentSlideIndex(this.circulated.previousIndex, "left")
+        }
+      });
+    }
   }
   public render(): JSX.Element {
-    const circulated = circular(this.slides, this.activeSlideIndex);
+    this.circulated = circular(this.slides, this.activeSlideIndex);
     return (
       <div
         id="react-sliding-container"
@@ -87,16 +101,16 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
       >
         <div id="rscawl">
           {this.isShowArrows() && React.cloneElement(this.options.leftArrow, {
-            clickHandlerCallback: () => { this.updateCurrentSlideIndex(circulated.previousIndex, "left") },
+            clickHandlerCallback: () => { this.updateCurrentSlideIndex(this.circulated.previousIndex, "left") },
             type: ARROW_LEFT
           })}
         </div>
         <div id="innerContainer" className="react-sliding-container-inner" style={this.containerStyle}>
-          {circulated.calculatedChildren
-            && circulated.calculatedChildren.length > 0
-            && circulated.calculatedChildren[0] !== null
-            && circulated.calculatedChildren[1] !== undefined
-            && circulated.calculatedChildren.map((child, i) => React.cloneElement(
+          {this.circulated.calculatedChildren
+            && this.circulated.calculatedChildren.length > 0
+            && this.circulated.calculatedChildren[0] !== null
+            && this.circulated.calculatedChildren[1] !== undefined
+            && this.circulated.calculatedChildren.map((child: React.ReactElement<any>, i: number) => React.cloneElement(
             child,
             {
               id: `slide-${i}`,
@@ -109,7 +123,7 @@ export default class SlidingContainer extends React.Component<ISlidingContainerP
         </div>
         <div id="rscawr">
           {this.isShowArrows() && this.options.showArrows && React.cloneElement(this.options.rightArrow, {
-            clickHandlerCallback: () => { this.updateCurrentSlideIndex(circulated.nextIndex, "right") },
+            clickHandlerCallback: () => { this.updateCurrentSlideIndex(this.circulated.nextIndex, "right") },
             type: ARROW_RIGHT
           })}
         </div>

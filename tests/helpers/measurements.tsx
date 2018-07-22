@@ -1,7 +1,7 @@
+// import { mount, shallow } from "enzyme";
 import * as React from "react";
-import "../__mocks__/setupTests";
-import { shallow, mount } from "enzyme";
 import {measurements} from "../../src/helpers/measurements";
+import "../__mocks__/setupTests";
 
 describe("Circular helper function", () => {
 

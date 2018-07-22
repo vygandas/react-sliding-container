@@ -1,4 +1,4 @@
-interface ICircularThreeElements<T = any> {
+export interface ICircularThreeElements<T = any> {
     current: T;
     previous?: T;
     next?: T;
