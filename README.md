@@ -170,6 +170,7 @@ const MyCustomArrow = class MyArrow extends Arrow {
 
 It can be used as a base component for other ideas. There're implemented:
 
+- Run lint fix, tests and build before git commit, push and npm publish
 - Typescript, React, SCSS
 - TS, SASS Linting
 - Tests, Jest, Mocha, Enzyme
