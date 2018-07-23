@@ -48,7 +48,7 @@ Option | Description
 `slideXMarginPx?: number` | Margin for one slide. That space from navigation arrows or side borders. Default `20`.
 `showArrows?: boolean` | Whether to show arrows or not. Default `true`.
 `slideTime?: number` | Speed of slide travel to the right or left. Default `500`.
-`slidingType?: keyof IEasings` | Type of slide easing. Default `easeInQuad`.
+`slidingType?: keyof IEasings` | Type of slide easing. Default `easeInQuad`. Available constants: `linear`, `easeInQuad`, `easeOutQuad`, `easeInOutQuad`, `easeInCubic`, `easeOutCubic`, `easeInOutCubic`, `easeInQuart`, `easeOutQuart`, `easeInOutQuart`, `easeInQuint`, `easeOutQuint`, `easeInOutQuint`
 
 ### Slide
 
